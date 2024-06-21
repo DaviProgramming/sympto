@@ -16,12 +16,108 @@
 
 @include('../components/aside')
 
-<footer class="footer-login">
+<section class="container-dashboard">
 
-    © 2024 Sympto
+    <div class="container-dashboard-title">
+        Dashboard
+    </div>
 
-</footer>
+    <div class="container-dashboard-content">
 
+
+        <div class="container-dashboard-content-primary">
+
+            <div class="container-dashboard-content-primary-welcome">
+
+                <div class="container-dashboard-content-primary-welcome-head">
+                    <div class="container-dashboard-content-primary-welcome-head-text">Bom dia, <span class="container-dashboard-content-primary-welcome-head-name">David Oliveira</span> </div> 
+                    <div class="container-dashboard-content-primary-welcome-head-sub-text">Como está hoje?</div>
+                </div>
+
+                <div class="container-dashboard-content-primary-welcome-body">
+
+                    <button type="button">Ficar Online</button>
+
+                </div>
+
+            </div>
+
+            <div class="container-dashboard-content-primary-cards">
+
+                <div class="container-dashboard-content-primary-cards-card">
+
+                    <div class="container-dashboard-content-primary-cards-card-title">
+                        <i class="fa-solid fa-users"></i> Novos pacientes
+                    </div>
+
+                    <div class="container-dashboard-content-primary-cards-card-body">
+                        4   
+                    </div>
+
+
+                </div>
+
+
+                <div class="container-dashboard-content-primary-cards-card">
+
+                    <div class="container-dashboard-content-primary-cards-card-title">
+                        <i class="fa-solid fa-star"></i> Avaliação
+                    </div>
+
+                    <div class="container-dashboard-content-primary-cards-card-body">
+                        4   
+                    </div>
+
+
+                </div>
+
+                <div class="container-dashboard-content-primary-cards-card">
+
+                    <div class="container-dashboard-content-primary-cards-card-title">
+                        <i class="fa-solid fa-clipboard-check"></i> Consultas Totais
+                    </div>
+
+                    <div class="container-dashboard-content-primary-cards-card-body">
+                        10
+                    </div>
+
+
+                </div>
+
+                <div class="container-dashboard-content-primary-cards-card">
+
+                    <div class="container-dashboard-content-primary-cards-card-title">
+                        <i class="fa-solid fa-clock"></i> Tempo medio de consulta
+                    </div>
+
+                    <div class="container-dashboard-content-primary-cards-card-body">
+                        10 min
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+        <div class="container-dashboard-content-secondary">
+            
+        </div>
+
+
+    </div>
+
+    
+
+    
+
+</section>
+
+@include('../components/footer')
 
 
 @endsection

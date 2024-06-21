@@ -3,24 +3,16 @@
     bottom: 0;
     width: 100%;
     height: 100px;
-    color: $white-color;
-    font-weight: 700;
+    color: $letter-color;
+    font-weight: 400;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(255, 255, 255, 0.096);
+    background: $white-color;
+
     backdrop-filter: blur(10px);
     text-transform: uppercase;
 
-    &::after{
-
-        position: absolute;
-        content: '';
-        top: 0px;
-        left: 0;
-        background: rgba(255, 255, 255, 0.062);
-        width: 100%;
-        height: 1px;
-    }
+    
    
 }

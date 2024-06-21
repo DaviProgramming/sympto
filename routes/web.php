@@ -44,11 +44,33 @@ Route::get('/login', function () {
 })->name('pagina.login');
 
 
+Route::get('/consultas', function(){
+
+    $user = Auth::user();
+
+
+    if($user){
+
+        return view('pages.consultas');
+
+
+    }else{
+
+
+        return redirect()->route('pagina.login');
+
+
+
+    }
+
+
+
+});
+
+
 
 Route::post('/evento/login', function(Illuminate\Http\Request $request){
-
-    
-
+ 
     $data = $request->all();
 
 

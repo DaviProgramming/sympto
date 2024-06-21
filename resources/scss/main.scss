@@ -2,11 +2,14 @@
 @import "./abstract/fonts";
 
 @import "./components/aside";
+@import "./components/navbar";
 
 @import "./pages/login";
+@import "./pages/dashboard";
+@import "./pages/consultas";
 
 body{
-    background: $second-color;
+    background: $background-grey-color;
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 100vh;
@@ -14,6 +17,10 @@ body{
     margin: 0;
     font-family: $first-font;
 
+    position: relative;
+
+
+   
 }
 
 

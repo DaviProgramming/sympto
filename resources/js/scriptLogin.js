@@ -8,7 +8,7 @@ $.ajaxSetup({
 const listeners = () => {
 
 
-    const allInputsForm = document.querySelectorAll('.container-form-container');
+    const allInputsForm = document.querySelectorAll('.container-form-content-container');
 
     if(allInputsForm != null){
 
@@ -27,13 +27,13 @@ const listeners = () => {
     }
 
 
-    const buttonFormLogin = document.querySelector('.container-form-container-button');
+    const buttonFormLogin = document.querySelector('.container-form-content-container-button');
 
     buttonFormLogin.addEventListener('click', (e) => {
 
         e.preventDefault();
 
-        if (e.target.classList.contains('container-form-container-button')) {
+        if (e.target.classList.contains('container-form-content-container-button')) {
 
             formActions.tryLogin(e.target)
 
@@ -131,7 +131,7 @@ const formActions = {
 
     ativaError(erroText){
 
-        let componentWithLoadings = document.querySelector('.container-form-loadings');
+        let componentWithLoadings = document.querySelector('.container-form-content-loadings');
         let loader = componentWithLoadings.querySelector('.loader');
         let success = componentWithLoadings.querySelector('.success-checkmark');
         let error = componentWithLoadings.querySelector('.error');
@@ -188,7 +188,7 @@ const formActions = {
 
     ativaSuccess(){
 
-        let componentWithLoadings = document.querySelector('.container-form-loadings');
+        let componentWithLoadings = document.querySelector('.container-form-content-loadings');
 
         let loader = componentWithLoadings.querySelector('.loader');
 
@@ -222,7 +222,7 @@ const formActions = {
     ativaLoading(){
 
 
-        let componentWithLoadings = document.querySelector('.container-form-loadings');
+        let componentWithLoadings = document.querySelector('.container-form-content-loadings');
 
         let loader = componentWithLoadings.querySelector('.loader');
 

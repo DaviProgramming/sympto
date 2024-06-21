@@ -4,28 +4,26 @@
 
         <div class="aside-container-head">
             <div class="aside-container-head-image">
-                <img src="assets/194915.png" alt="">
+                <img src="assets/logo-without-text.png" alt="">
             </div>
-            <div class="aside-container-head-name">
-                David Oliveira
-            </div>
+            
         </div>
 
         <div class="aside-container-body">
 
-            <div class="aside-container-body-item">
+            <a href="/" class="aside-container-body-item active">
                 <i class="fa-solid fa-house"></i> <span>Inicio</span> 
-            </div>
+            </a>
 
-            <div class="aside-container-body-item">
+            <a class="aside-container-body-item">
                 <i class="fa-solid fa-clipboard-check"></i><span>Consultas Realizadas</span> 
-            </div>
-            <div class="aside-container-body-item">
+            </a>
+            <a class="aside-container-body-item">
                 <i class="fa-solid fa-clipboard-list"></i><span>consultas Agendadas</span>
-            </div>
-            <div class="aside-container-body-item">
+            </a>
+            <a class="aside-container-body-item">
                 <i class="fa-solid fa-file-waveform"></i><span>Exames solicitados</span>
-            </div>
+            </a>
 
         </div>
 

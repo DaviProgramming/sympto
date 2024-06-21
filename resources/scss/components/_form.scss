@@ -1,12 +1,9 @@
-.container-form{
-    position: relative;
-
-    box-shadow: 0 0 5000px rgba(0, 0, 0, 0.267);
-    border-radius: 6px;
+.container-form-content{
+    position: relative;                 
     padding: 30px;
     height: 500px;
     display: flex;
-
+    background: #FEFBF6;
     &-loadings{
         top: 0;
         left: 0;
@@ -32,7 +29,6 @@
         flex-direction: column;
         gap: 20px;
         min-width: 300px;
-
        
 
 

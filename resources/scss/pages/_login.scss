@@ -3,12 +3,31 @@
 .container.login{
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     height: 100vh;
 
     @import "../components/form";
+}
+
+
+.container-form{
+    display: flex;
+    flex-direction: row;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.151);
+
+}
+
+.container-form-image{
+    img{
+        width: 500px;
+        height: 100%;
+        object-fit: cover;
+        aspect-ratio: 16/9;
+    }
 }
 
 @import "../components/footer-login";
