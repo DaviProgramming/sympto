@@ -1,4 +1,4 @@
-const openAiKey = "sk-proj-LQIQQC4UF6DNV4RLAUDwT3BlbkFJksBk532IvZS39PBkN6G6";
+const openAiKey = "";
 
 async function fetchWithRetry(url, options, retries = 5, delay = 5000) {
     for (let i = 0; i < retries; i++) {
