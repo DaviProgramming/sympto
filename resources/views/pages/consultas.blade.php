@@ -12,7 +12,7 @@
     <script src="https://npmcdn.com/flatpickr@4.6.13/dist/l10n/pt.js"></script>
 
 
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/scss/main.scss'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/scss/main.scss', 'resources/js/scriptConsultas.js'])
 
 @endsection
 
@@ -29,46 +29,7 @@
 
         <div class="container-consulta-content">
 
-            <div class="container-consulta-content-form first-step ">
-
-                <div class="container-consulta-content-form-content">
-
-                    <div class="container-consulta-content-form-content-title">
-                        Preencha os Dados da Consulta
-                    </div>
-                    <div class="container-consulta-content-form-content-body">
-
-                        <div class="container-consulta-content-form-content-body-container">
-                            <span>O que você está sentindo?</span>
-                            <textarea name="sentindo" id="" placeholder="Descreva os sintomas o mais detalhadamente possível"></textarea>
-                        </div>
-
-                        <button class="btn-new-query"><span>Proxima Etapa <i
-                                    class="fa-solid fa-arrow-right"></i></span></button>
-                    </div>
-
-
-                </div>
-
-                <div class="container-consulta-content-form-image">
-
-                    <img src="assets/doctor-illustration.jpg" alt="">
-
-                    <div class="container-consulta-content-form-image-alert">
-
-
-
-                        <p>
-                            Lembre-se de preencher bem detalhadamente cada campo.
-                        </p>
-
-                        <span>Cada detalhe importa!</span>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="container-consulta-content-form second-step hide-content">
+            <div class="container-consulta-content-form first-step">
 
                 <div class="container-consulta-content-form-content">
 
@@ -81,7 +42,7 @@
                             <span>Quais os sintomas?</span>
                             <div class="select-dropdown">
                                 <div class="select-dropdown-header">
-                                    <input type="text" placeholder='Selecione os sintomas'>
+                                    <input type="text" id="input-search-sintoma" placeholder='Pesquise os sintomas'>
                                 </div>
 
                                 <div class="select-dropdown-body">
@@ -110,105 +71,8 @@
 
                     <div class="container-consulta-content-form-sintomas-body">
 
-                        <div class="container-consulta-content-form-sintomas-body-item ">
 
-                            <div class="container-consulta-content-form-sintomas-body-item-title">
-                                Febre
-                            </div>
-
-                            <div class="container-consulta-content-form-sintomas-body-item-content">
-
-                                <div class="container-consulta-content-form-sintomas-body-item-grau">
-                                    <label for="grau-sintoma">Qual a intensidade?</label>
-                                    <div class="range">
-                                        <input type="range" id="range1" step="1" max="2" />
-                                    </div>
-                                    <span>Leve</span>
-                                </div>
-                                <div class="container-consulta-content-form-sintomas-body-item-tempo">
-                                    <label for="tempo-sintoma">A quanto tempo está sentindo?</label>
-                                    <input type="datetime-local" name="tempo-sintoma" id="tempo-input" min="2018-01-01">
-                                </div>
-
-                            </div>
-
-
-                        </div>
-
-                        <div class="container-consulta-content-form-sintomas-body-item hide-body">
-
-                            <div class="container-consulta-content-form-sintomas-body-item-title">
-                                Febre
-                            </div>
-
-                            <div class="container-consulta-content-form-sintomas-body-item-content">
-
-                                <div class="container-consulta-content-form-sintomas-body-item-grau">
-                                    <label for="grau-sintoma">Qual a intensidade?</label>
-                                    <div class="range">
-                                        <input type="range" id="range1" step="1" max="2" />
-                                    </div>
-                                    <span>Leve</span>
-                                </div>
-                                <div class="container-consulta-content-form-sintomas-body-item-tempo">
-                                    <label for="tempo-sintoma">A quanto tempo está sentindo?</label>
-                                    <input type="datetime-local" name="tempo-sintoma" id="tempo-input" min="2018-01-01">
-                                </div>
-
-                            </div>
-
-
-                        </div>
-
-                        <div class="container-consulta-content-form-sintomas-body-item hide-body">
-
-                            <div class="container-consulta-content-form-sintomas-body-item-title">
-                                Febre
-                            </div>
-
-                            <div class="container-consulta-content-form-sintomas-body-item-content">
-
-                                <div class="container-consulta-content-form-sintomas-body-item-grau">
-                                    <label for="grau-sintoma">Qual a intensidade?</label>
-                                    <div class="range">
-                                        <input type="range" id="range1" step="1" max="2" />
-                                    </div>
-                                    <span>Leve</span>
-                                </div>
-                                <div class="container-consulta-content-form-sintomas-body-item-tempo">
-                                    <label for="tempo-sintoma">A quanto tempo está sentindo?</label>
-                                    <input type="datetime-local" name="tempo-sintoma" id="tempo-input" min="2018-01-01">
-                                </div>
-
-                            </div>
-
-
-                        </div>
-
-                        <div class="container-consulta-content-form-sintomas-body-item hide-body">
-
-                            <div class="container-consulta-content-form-sintomas-body-item-title">
-                                Febre
-                            </div>
-
-                            <div class="container-consulta-content-form-sintomas-body-item-content">
-
-                                <div class="container-consulta-content-form-sintomas-body-item-grau">
-                                    <label for="grau-sintoma">Qual a intensidade?</label>
-                                    <div class="range">
-                                        <input type="range" id="range1" step="1" max="2" />
-                                    </div>
-                                    <span>Leve</span>
-                                </div>
-                                <div class="container-consulta-content-form-sintomas-body-item-tempo">
-                                    <label for="tempo-sintoma">A quanto tempo está sentindo?</label>
-                                    <input type="datetime-local" name="tempo-sintoma" id="tempo-input" min="2018-01-01">
-                                </div>
-
-                            </div>
-
-
-                        </div>
+                        
 
 
 
@@ -222,6 +86,49 @@
                 </div>
 
             </div>
+
+            <div class="container-consulta-content-form second-step hide-content">
+
+               
+
+                <div class="container-consulta-content-form-image">
+
+                    <img src="assets/doctor-illustration.jpg" alt="">
+
+                    <div class="container-consulta-content-form-image-alert">
+
+
+
+                        <p>
+                            Lembre-se de preencher bem detalhadamente cada campo.
+                        </p>
+
+                        <span>Cada detalhe importa!</span>
+                    </div>
+                </div>
+
+                <div class="container-consulta-content-form-content">
+
+                    <div class="container-consulta-content-form-content-title">
+                        Preencha os Dados da Consulta
+                    </div>
+                    <div class="container-consulta-content-form-content-body">
+
+                        <div class="container-consulta-content-form-content-body-container">
+                            <span>O que você está sentindo?</span>
+                            <textarea name="sentindo" id="" placeholder="Descreva os sintomas o mais detalhadamente possível"></textarea>
+                        </div>
+
+                        <button class="btn-new-query"><span>Proxima Etapa <i
+                                    class="fa-solid fa-arrow-right"></i></span></button>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            
 
         </div>
 

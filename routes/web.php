@@ -11,13 +11,20 @@ Route::get('/', function () {
 
     $user = Auth::user();
 
+
+
     if(!$user){
+
 
         return redirect()->route('pagina.login');
 
     }else{
 
-        return view('pages.home');
+        Session::put('current_page', 'home');
+        $currentPage = session('current_page'); 
+
+
+        return view('pages.home', ['current_page' => $currentPage]);
 
     }
 
@@ -45,16 +52,19 @@ Route::get('/login', function () {
 })->name('pagina.login');
 
 
-Route::get('/consultas', function(){
+Route::get('/nova-consulta', function(){
 
     $user = Auth::user();
 
-
     if($user){
+
+        Session::put('current_page', 'nova-consulta');
+
+        $currentPage = session('current_page');
 
         $sintomas = Sintoma::all();
 
-        return view('pages.consultas', ['sintomas' => $sintomas]);
+        return view('pages.consultas', ['sintomas' => $sintomas, 'user' => $user, 'current_page' => $currentPage]);
 
 
     }else{
@@ -67,8 +77,7 @@ Route::get('/consultas', function(){
     }
 
 
-
-});
+})->name('pagina.nova-consulta');
 
 
 
@@ -108,7 +117,7 @@ Route::post('/evento/login', function(Illuminate\Http\Request $request){
 
 
 
-});
+})->name('evento.login');
 
 
 Route::post('/evento/logout', function(Request $request){
@@ -130,4 +139,4 @@ Route::post('/evento/logout', function(Request $request){
     }
 
 
-});
+})->name('evento.logout');

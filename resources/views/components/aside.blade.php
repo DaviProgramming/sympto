@@ -11,8 +11,12 @@
 
         <div class="aside-container-body">
 
-            <a href="/" class="aside-container-body-item active">
+            <a href="/" class="aside-container-body-item <?php if($current_page == 'home') echo 'active'; ?>">
                 <i class="fa-solid fa-house"></i> <span>Inicio</span> 
+            </a>
+
+            <a href="/nova-consulta" class="aside-container-body-item <?php if($current_page == 'nova-consulta') echo 'active'; ?>">
+                <i class="fa-regular fa-calendar-plus"></i><span>Nova Consulta</span> 
             </a>
 
             <a class="aside-container-body-item">

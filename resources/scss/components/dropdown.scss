@@ -50,10 +50,18 @@
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
+            background: $white-color;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.479);
 
             &:hover{
+                box-shadow: 0 0 140px rgba(73, 73, 73, 0.884) inset;
+                color: $white-color;
+            }
+
+            &.active{
                 background: $third-color;
                 color: $white-color;
+
             }
 
             border: 1px solid $third-color;
