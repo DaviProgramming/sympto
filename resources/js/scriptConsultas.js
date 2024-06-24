@@ -1,4 +1,10 @@
 const listeners = () => {
+    const buttonNextSintomas = document.querySelector(".btn-new-query");
+
+    buttonNextSintomas.addEventListener("click", (e) => {
+        clickNextSintomas.clicked(e.target);
+    });
+
     const inputSearchSintoma = document.querySelector("#input-search-sintoma");
 
     const allSintomas = document.querySelectorAll(".select-dropdown-body-item");
@@ -23,6 +29,10 @@ const searchSintoma = {
         let searchValue = input.value.toLowerCase();
 
         if (searchValue.length <= 0) {
+            let allSintomasSelected = document.querySelectorAll(
+                ".container-consulta-content-form-sintomas-body-item"
+            );
+
             let body = document.querySelector(".select-dropdown-body");
             body.innerHTML = "";
 
@@ -31,16 +41,28 @@ const searchSintoma = {
                 divContainer.classList.add("select-dropdown-body-item");
                 divContainer.dataset.sintomaId = sintoma.dataset.sintomaId;
                 divContainer.innerHTML = sintoma.innerHTML;
+
+                if (allSintomasSelected != null) {
+                    allSintomasSelected.forEach((sintomaSelecionado) => {
+                        if (
+                            sintomaSelecionado.dataset.sintomaSelectedId ==
+                            divContainer.dataset.sintomaId
+                        ) {
+                            divContainer.classList.add("active");
+                        }
+                    });
+                }
+
                 divContainer.addEventListener("click", (e) => {
                     this.clickSintoma(e.target);
                 });
 
                 body.appendChild(divContainer);
             });
-
-
         } else {
-
+            let allSintomasSelected = document.querySelectorAll(
+                ".container-consulta-content-form-sintomas-body-item"
+            );
 
             let allSintomas = this.allSintomas;
 
@@ -57,6 +79,18 @@ const searchSintoma = {
                     divContainer.dataset.sintomaId =
                         sintomaDiv.dataset.sintomaId;
                     divContainer.innerHTML = sintomaDiv.innerHTML;
+
+                    if (allSintomasSelected != null) {
+                        allSintomasSelected.forEach((sintomaSelecionado) => {
+                            if (
+                                sintomaSelecionado.dataset.sintomaSelectedId ==
+                                divContainer.dataset.sintomaId
+                            ) {
+                                divContainer.classList.add("active");
+                            }
+                        });
+                    }
+
                     divContainer.addEventListener("click", (e) => {
                         this.clickSintoma(e.target);
                     });
@@ -68,7 +102,6 @@ const searchSintoma = {
     },
 
     clickSintoma(sintomaClicado) {
-
         console.log(sintomaClicado);
 
         this.removeSintoma(sintomaClicado);
@@ -80,12 +113,9 @@ const searchSintoma = {
         } else {
             this.removeSintoma(sintomaClicado);
         }
-
-
     },
 
     removeSintoma(sintomaClicado) {
-
         let sintomasSelecionadosContainer = document.querySelector(
             ".container-consulta-content-form-sintomas-body"
         );
@@ -100,168 +130,217 @@ const searchSintoma = {
                 selecionado.remove();
             });
         }
-
     },
 
     adicionaSintoma(sintomaClicado) {
-
         let sintomasSelecionadosContainer = document.querySelector(
             ".container-consulta-content-form-sintomas-body"
         );
 
-        let divContainer = document.createElement('div');
-        divContainer.classList.add('container-consulta-content-form-sintomas-body-item', 'hide-body');
-        divContainer.dataset.sintomaSelectedId = sintomaClicado.dataset.sintomaId;
+        let divContainer = document.createElement("div");
+        divContainer.classList.add(
+            "container-consulta-content-form-sintomas-body-item",
+            "hide-body"
+        );
+        divContainer.dataset.sintomaSelectedId =
+            sintomaClicado.dataset.sintomaId;
 
-        let divContainerTitle = document.createElement('div');
-        divContainerTitle.classList.add('container-consulta-content-form-sintomas-body-item-title');
+        let divContainerTitle = document.createElement("div");
+        divContainerTitle.classList.add(
+            "container-consulta-content-form-sintomas-body-item-title"
+        );
         divContainerTitle.innerHTML = sintomaClicado.innerHTML;
 
-        divContainerTitle.addEventListener('click', (e) => {
+        divContainerTitle.addEventListener("click", (e) => {
+            let allItem = e.target.parentNode;
 
-           let allItem = e.target.parentNode;
+            allItem.classList.toggle("hide-body");
+        });
 
-           allItem.classList.toggle('hide-body');
+        let divContainerContent = document.createElement("div");
+        divContainerContent.classList.add(
+            "container-consulta-content-form-sintomas-body-item-content"
+        );
 
-        })
+        let divContainerContentGrau = document.createElement("div");
+        divContainerContentGrau.classList.add(
+            "container-consulta-content-form-sintomas-body-item-grau"
+        );
 
-        let divContainerContent = document.createElement('div');
-        divContainerContent.classList.add('container-consulta-content-form-sintomas-body-item-content');
-
-        let divContainerContentGrau = document.createElement('div');
-        divContainerContentGrau.classList.add('container-consulta-content-form-sintomas-body-item-grau');
-
-        let divContainerContentGrauLabel = document.createElement('label');
+        let divContainerContentGrauLabel = document.createElement("label");
         divContainerContentGrauLabel.for = "grau-sintoma";
         divContainerContentGrauLabel.innerHTML = "Qual a intensidade?";
 
-        let divContainerContentGrauRangeDiv = document.createElement('div');
-        divContainerContentGrauRangeDiv.classList.add('range');
+        let divContainerContentGrauRangeDiv = document.createElement("div");
+        divContainerContentGrauRangeDiv.classList.add("range");
 
-        let divContainerContentGrauRangeDivInput = document.createElement('input');
-        divContainerContentGrauRangeDivInput.type = 'range';
+        let divContainerContentGrauRangeDivInput =
+            document.createElement("input");
+        divContainerContentGrauRangeDivInput.type = "range";
         divContainerContentGrauRangeDivInput.id = "range1";
         divContainerContentGrauRangeDivInput.step = 1;
         divContainerContentGrauRangeDivInput.max = 2;
         divContainerContentGrauRangeDivInput.value = 0;
 
-        divContainerContentGrauRangeDivInput.addEventListener('change', (e) => {
-
+        divContainerContentGrauRangeDivInput.addEventListener("change", (e) => {
             let allItem = e.target.parentNode.parentNode.parentNode.parentNode;
 
-            let spanChange = allItem.querySelector('.span-info-intensidade');
+            let spanChange = allItem.querySelector(".span-info-intensidade");
 
-             if(e.target.value == 0){
-
-                spanChange.innerHTML = 'Leve';
-
-             }else if(e.target.value == 1){
-
-
-                spanChange.innerHTML = 'Moderado';
-
-
-             }
-             else if(e.target.value == 2){
-
-
-                spanChange.innerHTML = 'Intenso';
-
-
-             }else{
-
-                spanChange.innerHTML = 'Selecione um valor valido';
-                
-
-             }
-
-
-             
+            if (e.target.value == 0) {
+                spanChange.innerHTML = "Leve";
+            } else if (e.target.value == 1) {
+                spanChange.innerHTML = "Moderado";
+            } else if (e.target.value == 2) {
+                spanChange.innerHTML = "Intenso";
+            } else {
+                spanChange.innerHTML = "Selecione um valor valido";
+            }
 
             console.log(allItem);
+        });
 
+        divContainerContentGrauRangeDiv.appendChild(
+            divContainerContentGrauRangeDivInput
+        );
 
-        })
-
-        divContainerContentGrauRangeDiv.appendChild(divContainerContentGrauRangeDivInput);
-
-        let divContainerContentGrauSpan = document.createElement('span');
-        divContainerContentGrauSpan.classList.add('span-info-intensidade');
+        let divContainerContentGrauSpan = document.createElement("span");
+        divContainerContentGrauSpan.classList.add("span-info-intensidade");
         divContainerContentGrauSpan.innerHTML = "Leve";
 
         divContainerContentGrau.appendChild(divContainerContentGrauLabel);
         divContainerContentGrau.appendChild(divContainerContentGrauRangeDiv);
         divContainerContentGrau.appendChild(divContainerContentGrauSpan);
 
-        let divContainerContentTempo = document.createElement('div');
-        divContainerContentTempo.classList.add('container-consulta-content-form-sintomas-body-item-tempo');
+        let divContainerContentTempo = document.createElement("div");
+        divContainerContentTempo.classList.add(
+            "container-consulta-content-form-sintomas-body-item-tempo"
+        );
 
-        let divContainerContentTempoLabel = document.createElement('label');
-        divContainerContentTempoLabel.htmlFor = 'tempo-sintoma';
-        divContainerContentTempoLabel.innerHTML = 'A quanto tempo está sentindo?';
+        let divContainerContentTempoLabel = document.createElement("label");
+        divContainerContentTempoLabel.htmlFor = "tempo-sintoma";
+        divContainerContentTempoLabel.innerHTML =
+            "A quanto tempo está sentindo?";
 
-        let divContainerContentTempoInput = document.createElement('input');
+        let divContainerContentTempoInput = document.createElement("input");
         divContainerContentTempoInput.id = "tempo-input";
-        divContainerContentTempoInput.type = 'datetime-local';
+        divContainerContentTempoInput.type = "text";
         divContainerContentTempoInput.name = "tempo-sintoma";
+        divContainerContentTempoInput.value = "1 dia";
+        divContainerContentTempoInput.addEventListener("change", (e) => {
+            inputDataSintoma.verificaInput(e.target);
+        });
 
+        let divContainerContentTempoSpanErro = document.createElement("span");
+        divContainerContentTempoSpanErro.innerHTML =
+            "<i class='fa-solid fa-circle-exclamation'></i>insira uma data valida. Exemplo: 1 dia, 1 mes, 1 ano e etc.";
 
         divContainerContentTempo.appendChild(divContainerContentTempoLabel);
         divContainerContentTempo.appendChild(divContainerContentTempoInput);
-
+        divContainerContentTempo.appendChild(divContainerContentTempoSpanErro);
 
         divContainerContent.appendChild(divContainerContentGrau);
         divContainerContent.appendChild(divContainerContentTempo);
 
-
         divContainer.appendChild(divContainerTitle);
         divContainer.appendChild(divContainerContent);
-        
 
         sintomasSelecionadosContainer.appendChild(divContainer);
     },
 };
 
-function parseTimeInput(input) {
-    const now = new Date();
-    const [value, unit] = input.split(" ");
-    const amount = parseInt(value, 10);
+const inputDataSintoma = {
 
-    if (isNaN(amount) || !unit) {
-        return null; // Invalid input
-    }
+    verificaInput(input) {
+        function verificarModeloDataHora(texto) {
+            const regexModelo =
+                /\b(\d+)\s*(mês(es)?|dia(s)?|ano(s)?|hora(s)?|minuto(s)?|meses?|segundo(s)?)\b/g;
 
-    switch (unit.toLowerCase()) {
-        case "dia":
-        case "dias":
-            now.setDate(now.getDate() + amount);
-            break;
-        case "semana":
-        case "semanas":
-            now.setDate(now.getDate() + amount * 7);
-            break;
-        case "mês":
-        case "meses":
-            now.setMonth(now.getMonth() + amount);
-            break;
-        default:
-            return null; // Invalid unit
-    }
+            const correspondencias = texto.match(regexModelo);
+            return correspondencias || [];
+        }
 
-    return now;
-}
+        if (input.value.length >= 1) {
+            let validandoInput = verificarModeloDataHora(input.value);
 
-function calculateDate() {
-    const input = document.getElementById("timeInput").value;
-    const calculatedDate = parseTimeInput(input);
-    const resultElement = document.getElementById("result");
+            if (validandoInput.length <= 0) {
+                let divFather = input.parentNode;
 
-    if (calculatedDate) {
-        resultElement.innerText = `Data calculada: ${calculatedDate.toLocaleDateString()}`;
-    } else {
-        resultElement.innerText =
-            "Entrada inválida. Por favor, tente novamente.";
-    }
-}
+                let spanError = divFather.querySelector("span");
+
+                if (!spanError.classList.contains("error")) {
+                    spanError.classList.add("error");
+                }
+            } else {
+
+                let divFather = input.parentNode;
+
+                let spanError = divFather.querySelector("span");
+
+                if (spanError.classList.contains("error")) {
+                    spanError.classList.remove("error");
+                }
+
+                console.log(validandoInput =verificarModeloDataHora(input.value))
+            }
+        } else {
+            let divFather = input.parentNode;
+            let spanError = divFather.querySelector("span");
+
+            if (spanError.classList.contains("error")) {
+                spanError.classList.remove("error");
+            }
+        }
+
+    },
+};
+
+const clickNextSintomas = {
+    disableButton(button) {},
+
+    clicked(button) {},
+
+    validaData() {
+        const input = document.getElementById("timeInput").value;
+        const calculatedDate = this.criaData(input);
+        const resultElement = document.getElementById("result");
+
+        if (calculatedDate) {
+            resultElement.innerText = `Data calculada: ${calculatedDate.toLocaleDateString()}`;
+        } else {
+            resultElement.innerText =
+                "Entrada inválida. Por favor, tente novamente.";
+        }
+    },
+
+    criaData(input) {
+        const now = new Date();
+        const [value, unit] = input.split(" ");
+        const amount = parseInt(value, 10);
+
+        if (isNaN(amount) || !unit) {
+            return null; // Invalid input
+        }
+
+        switch (unit.toLowerCase()) {
+            case "dia":
+            case "dias":
+                now.setDate(now.getDate() + amount);
+                break;
+            case "semana":
+            case "semanas":
+                now.setDate(now.getDate() + amount * 7);
+                break;
+            case "mês":
+            case "meses":
+                now.setMonth(now.getMonth() + amount);
+                break;
+            default:
+                return null; // Invalid unit
+        }
+
+        return now;
+    },
+};
 
 listeners();
