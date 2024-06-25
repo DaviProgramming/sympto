@@ -63,9 +63,12 @@ class EventoController extends Controller
 
     }
 
-    public function novaConsulta(Request $request){
+    public function cadastro(Request $request){
 
+        
 
     }
+
+    
 
 }
