@@ -71,10 +71,14 @@
 
                     <div class="container-consulta-content-form-sintomas-body">
 
-
-                        
-
-
+                        <div class="container-consulta-content-form-sintomas-body-empty">
+                            <div class="container-consulta-content-form-sintomas-body-empty-image">
+                                <img src="assets/sintoma.png" alt="">
+                            </div>
+                            <div class="container-consulta-content-form-sintomas-body-empty-text">
+                                Nenhum sintoma selecionado ainda
+                            </div>
+                        </div>
 
 
                     </div>
@@ -90,6 +94,30 @@
             <div class="container-consulta-content-form second-step hide-content">
 
                
+                
+               
+
+                <div class="container-consulta-content-form-content">
+
+                    <div class="container-consulta-content-form-content-title">
+                        <div class="container-consulta-content-form-content-title-volta">
+                            <i class="fa-solid fa-arrow-left"></i> 
+                        </div>
+                        Voltar
+                    </div>
+                    <div class="container-consulta-content-form-content-body">
+
+                        <div class="container-consulta-content-form-content-body-container">
+                            <span>Acrescente com suas palavras o que você está sentindo</span>
+                            <textarea name="sentindo" id="" placeholder="Descreva os sintomas o mais detalhadamente possível"></textarea>
+                        </div>
+
+                        <button class="btn-new-query" id="btn-nova-consulta"><span>Proxima Etapa <i
+                                    class="fa-solid fa-arrow-right"></i></span></button>
+                    </div>
+
+
+                </div>
 
                 <div class="container-consulta-content-form-image">
 
@@ -105,25 +133,6 @@
 
                         <span>Cada detalhe importa!</span>
                     </div>
-                </div>
-
-                <div class="container-consulta-content-form-content">
-
-                    <div class="container-consulta-content-form-content-title">
-                        Preencha os Dados da Consulta
-                    </div>
-                    <div class="container-consulta-content-form-content-body">
-
-                        <div class="container-consulta-content-form-content-body-container">
-                            <span>O que você está sentindo?</span>
-                            <textarea name="sentindo" id="" placeholder="Descreva os sintomas o mais detalhadamente possível"></textarea>
-                        </div>
-
-                        <button class="btn-new-query"><span>Proxima Etapa <i
-                                    class="fa-solid fa-arrow-right"></i></span></button>
-                    </div>
-
-
                 </div>
 
             </div>
@@ -145,6 +154,7 @@
 
 @section('scripts')
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         const configFlatPickr = {

@@ -9,6 +9,9 @@
     gap: 0px;
 
 
+    
+
+
     @media screen and (max-width:998px) {
 
         &::after{
@@ -37,6 +40,9 @@
         padding: 30px 30px;
         color: $letter-color;
         font-weight: 600;
+
+        
+        
     }
 
     &:not(.hide-body){
@@ -75,7 +81,6 @@
         max-height: 430px;
         overflow-y: auto;
 
-
         &::-webkit-scrollbar{
             width: 7px;
 
@@ -87,6 +92,22 @@
             padding: 10px;
 
         }
+
+        &-empty{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+            justify-content: center ;
+            height: 100%;
+            img{
+                width: 100px;
+            }
+
+            color: $letter-color;
+            font-weight: 600;
+
+        }
         
 
         &-item{
@@ -95,6 +116,12 @@
             min-height: 250px;
             background: $white-color;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.247);
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            height: max-content;
+        
+          
 
             &:is(.hide-body){
 
@@ -117,14 +144,26 @@
            
             }
 
-            
-
 
             &-title{
                 background: $third-color;
                 color: $white-color;
                 font-weight: 600;
                 cursor: pointer;
+
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+
+                svg{
+                    font-size: 20px;
+
+                    &:hover{
+
+                        color: $red-color;
+                        transition: 0.1s;
+                    }
+                }
             }
 
             &-grau{
@@ -163,7 +202,7 @@
                     gap: 5px;
                     align-items: center;
                     width: max-content;
-
+                    width: 100%;
                     svg{
                         font-size: 16px;
                     }
@@ -171,6 +210,7 @@
                     &.error{
 
                     display: flex;
+                    width: 100%;
 
                     }
 

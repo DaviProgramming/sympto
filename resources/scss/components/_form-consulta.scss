@@ -10,6 +10,30 @@
     overflow: hidden;
 
 
+    &:not(.hide-content){
+
+
+        animation: containerAnimation 0.2s ease-in-out;
+
+
+        @keyframes containerAnimation {
+
+
+            from{
+                margin-left: -5000px;
+                opacity: 0;
+            }
+
+            to{
+                margin-left: 0;
+                opacity: 1;
+            }
+            
+        }
+
+    }
+
+
     @media screen and (max-width: 998px) {
 
     grid-template-columns: repeat(1,1fr);
@@ -17,11 +41,7 @@
     margin-bottom: 120px;
 
 
-    &-image{
-
-
-        
-    }
+   
         
     }
 
@@ -36,7 +56,29 @@
             white-space: nowrap;
             font-weight: 600;
             color: $letter-color;
-            margin-bottom: 10px;
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+            align-items: center;
+
+            &-volta{
+                background: $third-color;
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: $white-color;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.11);
+                cursor: pointer;
+                &:hover{
+
+                    background: $second-color;
+
+                }
+            }
+            
         }
 
         &-body{
@@ -122,6 +164,7 @@
             width: 100%;
         }
         img{
+            width: 100%;
             height: 100%;
             object-fit: cover
         }

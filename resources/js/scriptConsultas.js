@@ -1,7 +1,39 @@
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
 const listeners = () => {
+
+    const buttonNovaConsulta = document.querySelector('#btn-nova-consulta');
+    buttonNovaConsulta.addEventListener('click', (e) => {
+
+        clickNewConsulta.clicked(e.target);
+
+    })
+
+    const voltaButtonSecondStep = document.querySelector('.container-consulta-content-form-content-title-volta');
+
+    voltaButtonSecondStep.addEventListener('click', (e) => {
+
+        containerActions.voltaContainer();
+
+    })
+
+    const logout = document.querySelector('#logout');
+
+    logout.addEventListener('click', (e) => {
+
+        userActions.logout();
+
+    })
+    
     const buttonNextSintomas = document.querySelector(".btn-new-query");
 
     buttonNextSintomas.addEventListener("click", (e) => {
+
+        console.log(e)
         clickNextSintomas.clicked(e.target);
     });
 
@@ -21,6 +53,34 @@ const listeners = () => {
         searchSintoma.inputSearch(e.target);
     });
 };
+
+const containerActions = {
+
+    voltaContainer(){
+
+        let firstContainer = document.querySelector('.first-step');
+
+        let secondContainer = document.querySelector('.second-step');
+
+
+        if(!secondContainer.classList.contains('hide-content')){
+
+            secondContainer.classList.add('hide-content');
+
+        }
+
+        if(firstContainer.classList.contains('hide-content')){
+
+            firstContainer.classList.remove('hide-content')
+
+        }
+
+
+       
+
+
+    }
+}
 
 const searchSintoma = {
     allSintomas: [],
@@ -102,7 +162,6 @@ const searchSintoma = {
     },
 
     clickSintoma(sintomaClicado) {
-        console.log(sintomaClicado);
 
         this.removeSintoma(sintomaClicado);
 
@@ -116,6 +175,20 @@ const searchSintoma = {
     },
 
     removeSintoma(sintomaClicado) {
+
+        let emptyContainer = document.querySelector('.container-consulta-content-form-sintomas-body-empty');
+        let allSintomasClicados = document.querySelectorAll('.container-consulta-content-form-sintomas-body-item');
+
+        if(allSintomasClicados.length <= 0){
+
+           if(emptyContainer.classList.contains('hide-content')){
+
+                emptyContainer.classList.remove('hide-content');
+
+           }
+
+        }
+
         let sintomasSelecionadosContainer = document.querySelector(
             ".container-consulta-content-form-sintomas-body"
         );
@@ -133,6 +206,16 @@ const searchSintoma = {
     },
 
     adicionaSintoma(sintomaClicado) {
+
+        let emptyContainer = document.querySelector('.container-consulta-content-form-sintomas-body-empty');
+
+        if(!emptyContainer.classList.contains('hide-content')){
+
+
+            emptyContainer.classList.add('hide-content');
+
+        }
+        
         let sintomasSelecionadosContainer = document.querySelector(
             ".container-consulta-content-form-sintomas-body"
         );
@@ -151,11 +234,52 @@ const searchSintoma = {
         );
         divContainerTitle.innerHTML = sintomaClicado.innerHTML;
 
+        
+
         divContainerTitle.addEventListener("click", (e) => {
             let allItem = e.target.parentNode;
 
             allItem.classList.toggle("hide-body");
         });
+
+        let divContainerTitleClose = document.createElement('div');
+        divContainerTitleClose.classList.add('close-item');
+        divContainerTitleClose.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>';
+        divContainerTitleClose.addEventListener('click', (e) => {
+
+            let allItem = e.target.parentNode.parentNode.parentNode;
+
+            if(allItem.classList.contains('container-consulta-content-form-sintomas-body-item-title')){
+
+               allItem = allItem.parentNode;
+
+            }
+
+            let getItemSelected = document.querySelector('.select-dropdown-body-item[data-sintoma-id="' + allItem.dataset.sintomaSelectedId + '"]');
+
+            getItemSelected.classList.remove('active');
+
+            allItem.remove();
+
+            let allSelectedSintomas = document.querySelectorAll('.container-consulta-content-form-sintomas-body-item');
+
+
+            if(allSelectedSintomas.length <= 0){
+
+                let emptyContainer = document.querySelector('.container-consulta-content-form-sintomas-body-empty');
+    
+                if(emptyContainer.classList.contains('hide-content')){
+    
+                    emptyContainer.classList.remove('hide-content')
+    
+                }
+    
+            }
+
+        })
+
+        divContainerTitle.appendChild(divContainerTitleClose);
+        
 
         let divContainerContent = document.createElement("div");
         divContainerContent.classList.add(
@@ -197,7 +321,6 @@ const searchSintoma = {
                 spanChange.innerHTML = "Selecione um valor valido";
             }
 
-            console.log(allItem);
         });
 
         divContainerContentGrauRangeDiv.appendChild(
@@ -233,7 +356,7 @@ const searchSintoma = {
 
         let divContainerContentTempoSpanErro = document.createElement("span");
         divContainerContentTempoSpanErro.innerHTML =
-            "<i class='fa-solid fa-circle-exclamation'></i>insira uma data valida. Exemplo: 1 dia, 1 mes, 1 ano e etc.";
+            "<i class='fa-solid fa-circle-exclamation'></i> Insira uma data válida. Exemplo: 1 dia, 1 mês, 1 ano, etc.";
 
         divContainerContentTempo.appendChild(divContainerContentTempoLabel);
         divContainerContentTempo.appendChild(divContainerContentTempoInput);
@@ -247,6 +370,8 @@ const searchSintoma = {
 
         sintomasSelecionadosContainer.appendChild(divContainer);
     },
+
+    
 };
 
 const inputDataSintoma = {
@@ -281,7 +406,6 @@ const inputDataSintoma = {
                     spanError.classList.remove("error");
                 }
 
-                console.log(validandoInput =verificarModeloDataHora(input.value))
             }
         } else {
             let divFather = input.parentNode;
@@ -296,9 +420,74 @@ const inputDataSintoma = {
 };
 
 const clickNextSintomas = {
-    disableButton(button) {},
 
-    clicked(button) {},
+    sintomasSelecionados: [],
+
+    getAllSintomasSelected(){
+
+        let allSintomasSelected = document.querySelectorAll('.container-consulta-content-form-sintomas-body-item');
+
+        let sintomasSelecionados = [];
+
+        allSintomasSelected.forEach(sintoma => {
+
+
+            let idSintoma = sintoma.dataset.sintomaSelectedId;
+            let intensidade = sintoma.querySelector('#range1').value;
+            let tempo = sintoma.querySelector('input#tempo-input').value;
+            
+            let sintomaObject = {
+
+                id: idSintoma,
+                'intensidade': intensidade,
+                'tempo': tempo
+
+            }
+
+            sintomasSelecionados.push(sintomaObject);
+
+        })
+
+        return sintomasSelecionados;
+
+        
+
+    },
+  
+
+    clicked(button) {
+
+        this.sintomasSelecionados = this.getAllSintomasSelected();
+        
+
+        if(this.sintomasSelecionados.length <= 0){
+
+            Swal.fire({
+                text: "É necessario selecionar ao menos 1 sintoma",
+                icon: "error",
+                timer: 2000,
+                showConfirmButton: false
+              });
+
+              return;
+
+        }
+
+        let nextStepContainer = document.querySelector('.second-step');
+        let actualStepContainer = document.querySelector('.first-step');
+
+        actualStepContainer.classList.add('hide-content');
+
+        if(nextStepContainer.classList.contains('hide-content')){
+
+            nextStepContainer.classList.remove('hide-content');
+
+        }
+
+
+        
+
+    },
 
     validaData() {
         const input = document.getElementById("timeInput").value;
@@ -342,5 +531,54 @@ const clickNextSintomas = {
         return now;
     },
 };
+
+const clickNewConsulta = {
+
+    clicked(button){
+
+            let textoAcrescento = document.querySelector('textarea[name="sentindo"]');
+
+            
+            Swal.fire({
+                title: "CONSULTA SOLICITADA",
+                icon: "success",
+                timer: 2000,
+                showConfirmButton: false
+              });
+
+              setTimeout(() => {
+
+                window.location.reload();
+
+              }, 2000)
+
+              return;
+
+
+
+    }
+
+}
+
+const userActions = {
+
+    logout(){
+
+        $.ajax({
+
+            type: 'POST',
+            url: '/evento/logout',
+            success: (response) => {   
+
+
+                window.location.reload();   
+
+            }
+
+        })
+
+    }
+
+}
 
 listeners();
