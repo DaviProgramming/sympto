@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('table_cookie_pagina', function (Blueprint $table) {
+        Schema::create('cookie_pagina', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('ip_address');
+            $table->string('user_id');
+            $table->string('pagina');
+            $table->integer('tempo_pagina');
         });
     }
 
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('table_cookie_pagina');
+        Schema::dropIfExists('cookie_pagina');
     }
 };

@@ -8,17 +8,13 @@ const startCookiePage = new Date().getTime();
 
 const listeners = () => {
 
-    window.addEventListener('beforeunload', (event)=> {
+    window.addEventListener('DOMContentLoaded', (e) => {
+        cookieActions.atualizaCookieTempo();
+    });
 
-       let cookiePagina = cookieActions.obterCookieTempo();
-       
-       if(cookiePagina){
-
-        cookieActions.enviaCookieTempo(cookiePagina);
-
-       }
-
-    })
+    window.addEventListener('beforeunload', (e) => {
+        cookieActions.enviarTempoDecorrido();
+    });
 
     const buttonNovaConsulta = document.querySelector('#btn-nova-consulta');
     buttonNovaConsulta.addEventListener('click', (e) => {
@@ -602,41 +598,67 @@ const clickNewConsulta = {
 }
 
 const cookieActions = {
+    atualizaCookieTempo() {
+        let tempoAtual = new Date().getTime();
 
-    obterCookieTempo(){
+        let pathAtual = window.location.pathname;
 
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = cookies[i].trim();
+        let expiracao = new Date(tempoAtual + (30 * 24 * 60 * 60 * 1000));
+
+        let expiraCookie = "expires=" + expiracao.toUTCString();
+
+        document.cookie = "tempo_na_pagina=" + tempoAtual + "; path=" + pathAtual + ";" + expiraCookie + ";path=/";
+    },
+
+    obterTempoDecorrido() {
+        let cookieValor = this.obterCookieTempo();
+
+        if (cookieValor) {
+            let tempoAtual = new Date().getTime();
+            let tempoDecorrido = (tempoAtual - cookieValor) / 1000; 
+            return tempoDecorrido;
+        }
+
+        return null;
+    },
+
+    obterCookieTempo() {
+        let cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            let cookie = cookies[i].trim();
             if (cookie.indexOf('tempo_na_pagina=') === 0) {
-                return cookie.substring('tempo_na_pagina='.length, cookie.length);
+                return parseInt(cookie.substring('tempo_na_pagina='.length, cookie.length));
             }
         }
         return null;
-
     },
 
-    enviaCookieTempo(tempoPagina){
+    enviarTempoDecorrido() {
+        let tempoDecorrido = this.obterTempoDecorrido();
+        let pathAtual = window.location.pathname; 
 
-        $.ajax({
-            type:"POST",
-            data:{
-                'tempoPagina': tempoPagina
-            },
-            url:"/cookie/tempo-pagina",
-            success: (response)=> {
+        if (tempoDecorrido !== null) {
+            
+            $.ajax({
+                type: "POST",
+                data: {
+                    'tempoDecorrido': tempoDecorrido,
+                    'pathAtual': pathAtual 
+                },
+                url: "/cookie/tempo-pagina",
+                success: function(response) {
 
-                console.log(response);
-                
-            }
-        })
+                },
+                error: function(xhr, status, error) {
+                    
+                }
+            });
+        }
+    }
+};
 
 
 
-    },
-
-
-}
 
 const userActions = {
 
