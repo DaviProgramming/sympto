@@ -1,0 +1,44 @@
+@media screen and (max-width: 998px){
+
+    .container-consulta.consultas{
+        padding: 20px 40px!important;
+    }
+
+    .container-consulta-content-form-content{
+        padding: 30px 20px;
+    }
+
+    .container-consulta-content-form-sintomas button{
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-right: 20px;
+        position: relative;
+        right: 0;
+        bottom: 0;
+        align-self: flex-end;
+    }
+    .select-dropdown-body{
+        grid-template-columns: repeat(2,1fr)!important;
+        padding-right: 0!important;
+    }
+
+    .container-consulta-content-form-content-body-container span{
+        top: -25px!important;
+    }
+
+    .container-consulta-content-form-content-body-container textarea{
+        min-height: 150px;
+    }
+
+    textarea{
+        min-height: 200px;
+    }
+
+    #btn-nova-consulta{
+        height: 100px;
+    }
+
+    .container-consulta-content-form-image{
+        display: none;
+    }
+}

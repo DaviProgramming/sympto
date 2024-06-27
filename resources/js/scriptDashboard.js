@@ -4,7 +4,11 @@ $.ajaxSetup({
     }
 });
 
+
+
 const listeners = () => {
+
+
 
 
     const logoutButton = document.querySelector('#logout');
@@ -31,7 +35,6 @@ const userActions = {
             url: '/evento/logout',
             success: (response) => {
 
-                console.log(response);
                 window.location.reload();   
 
             }

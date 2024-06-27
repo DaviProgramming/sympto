@@ -18,7 +18,6 @@
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/scss/main.scss'])
     @yield('head-content')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js"></script>
-
 </head>
 
 <body>

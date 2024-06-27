@@ -13,8 +13,7 @@ use App\Models\Sintoma;
 
 class PaginaController extends Controller
 {
-    public function home()
-    {
+    public function home(){
 
         $user = Auth::user();
 
@@ -30,8 +29,7 @@ class PaginaController extends Controller
         }
     }
 
-    public function login()
-    {
+    public function login(){
 
         $user = Auth::user();
 
@@ -40,13 +38,15 @@ class PaginaController extends Controller
             return redirect()->route('pagina.home');
         } else {
 
+            Session::put('current_page', 'login');
 
-            return view('pages.login');
+            $currentPage = session('current_page');
+
+            return view('pages.login', ['current_page' => $currentPage]);
         }
     }
 
-    public function novaConsulta()
-    {
+    public function novaConsulta(){
 
         $user = Auth::user();
 
@@ -64,5 +64,27 @@ class PaginaController extends Controller
 
             return redirect()->route('pagina.login');
         }
+    }
+
+    public function consultasAgendadas(){
+
+        $user = Auth::user();
+
+        Session::put('current_page', 'consultas-agendadas');
+
+        $currentPage = session('current_page');
+
+        if($user){
+
+            return view('pages.consulta_agendadas', ['user' => $user, 'current_page' => $currentPage]);
+
+
+        }else{
+
+            return redirect()->route('pagina.login');
+
+
+        }
+
     }
 }

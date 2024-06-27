@@ -1,380 +1,259 @@
 $.ajaxSetup({
     headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
+        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+    },
 });
 
-
 const listeners = () => {
+    const allInputsForm = document.querySelectorAll(
+        ".container-form-content-container"
+    );
 
-
-    const allInputsForm = document.querySelectorAll('.container-form-content-container');
-
-    if(allInputsForm != null){
-
-        allInputsForm.forEach(input => {
-
-            input.addEventListener('keyup', (e) => {
-
-                
-
+    if (allInputsForm != null) {
+        allInputsForm.forEach((input) => {
+            input.addEventListener("keyup", (e) => {
                 inputsInteractions.digitando(e.target);
-
-            })
-
-        })
-        
+            });
+        });
     }
 
+    const buttonFormLogin = document.querySelector(
+        ".container-form-content-container-button"
+    );
 
-    const buttonFormLogin = document.querySelector('.container-form-content-container-button');
-
-    buttonFormLogin.addEventListener('click', (e) => {
-
+    buttonFormLogin.addEventListener("click", (e) => {
         e.preventDefault();
 
-        if (e.target.classList.contains('container-form-content-container-button')) {
-
-            formActions.tryLogin(e.target)
-
+        if (
+            e.target.classList.contains(
+                "container-form-content-container-button"
+            )
+        ) {
+            formActions.tryLogin(e.target);
         } else {
-
             formActions.tryLogin(e.target.parentNode);
-
         }
-
-
-
-    })
-
-
-}
+    });
+};
 
 const inputsInteractions = {
-
-    hover(input){
-
-
-
-    },
-
-    mouseOut(input){
-
-
-    },
-
-    clicked(input){
-
-    },
-
-    digitando(input){
-
+    digitando(input) {
         let inputContainer = input.parentNode;
 
-        let spanInsideContainer = inputContainer.querySelector('span');
+        let spanInsideContainer = inputContainer.querySelector("span");
 
-        if(input.value.length >= 1) {
-
-
-            if(!inputContainer.classList.contains('active')){
-
-                inputContainer.classList.add('active');
-
-
+        if (input.value.length >= 1) {
+            if (!inputContainer.classList.contains("active")) {
+                inputContainer.classList.add("active");
             }
-
-        }else{
-
-            if(inputContainer.classList.contains('active')){
-
-                inputContainer.classList.remove('active');
-
-
+        } else {
+            if (inputContainer.classList.contains("active")) {
+                inputContainer.classList.remove("active");
             }
-
         }
+    },
+};
 
-
-    }
-
-}
-
-const validations ={
-
-    login(loginText){
-
-        if(loginText == '' || loginText == ' ' || loginText.length <= 2){
+const validations = {
+    login(loginText) {
+        if (loginText == "" || loginText == " " || loginText.length <= 2) {
             return false;
         }
 
         return true;
-
-
     },
 
-    password(passwordText){
-        
-            const regexNumero = /\d/;
+    password(passwordText) {
+        const regexNumero = /\d/;
 
-            if (passwordText.length < 5) {
-                return false;
-            }
+        if (passwordText.length < 5) {
+            return false;
+        }
 
-            return true;
-       
-    }
-
-}
+        return true;
+    },
+};
 
 const formActions = {
-
-
-    ativaError(erroText){
-
-        let componentWithLoadings = document.querySelector('.container-form-content-loadings');
-        let loader = componentWithLoadings.querySelector('.loader');
-        let success = componentWithLoadings.querySelector('.success-checkmark');
-        let error = componentWithLoadings.querySelector('.error');
-        let spanError = componentWithLoadings.querySelector('.error span');
+    ativaError(erroText) {
+        let componentWithLoadings = document.querySelector(
+            ".container-form-content-loadings"
+        );
+        let loader = componentWithLoadings.querySelector(".loader");
+        let success = componentWithLoadings.querySelector(".success-checkmark");
+        let error = componentWithLoadings.querySelector(".error");
+        let spanError = componentWithLoadings.querySelector(".error span");
 
         spanError.innerHTML = erroText;
 
-
-        if(componentWithLoadings.classList.contains('hide-content')){
-
-            componentWithLoadings.classList.remove('hide-content');
-
-        }
-        
-        if(!loader.classList.contains('hide-content')){
-
-            loader.classList.add('hide-content');
-
+        if (componentWithLoadings.classList.contains("hide-content")) {
+            componentWithLoadings.classList.remove("hide-content");
         }
 
-        if(!success.classList.contains('hide-content')){
-
-            success.classList.add('hide-content');
-
+        if (!loader.classList.contains("hide-content")) {
+            loader.classList.add("hide-content");
         }
 
-        if(error.classList.contains('hide-content')){
-
-            error.classList.remove('hide-content')
-
+        if (!success.classList.contains("hide-content")) {
+            success.classList.add("hide-content");
         }
 
-
+        if (error.classList.contains("hide-content")) {
+            error.classList.remove("hide-content");
+        }
 
         setTimeout(() => {
-
-            if(!componentWithLoadings.classList.contains('hide-content')){
-
-                componentWithLoadings.classList.add('hide-content')
-
+            if (!componentWithLoadings.classList.contains("hide-content")) {
+                componentWithLoadings.classList.add("hide-content");
             }
 
-            if(!error.classList.contains('hide-content')){
-
-                error.classList.remove('hide-content');
-
+            if (!error.classList.contains("hide-content")) {
+                error.classList.remove("hide-content");
             }
-
-        }, 1500)
-
-
-
+        }, 1500);
     },
 
-    ativaSuccess(){
+    ativaSuccess() {
+        let componentWithLoadings = document.querySelector(
+            ".container-form-content-loadings"
+        );
 
-        let componentWithLoadings = document.querySelector('.container-form-content-loadings');
+        let loader = componentWithLoadings.querySelector(".loader");
 
-        let loader = componentWithLoadings.querySelector('.loader');
+        let success = componentWithLoadings.querySelector(".success-checkmark");
 
-        let success = componentWithLoadings.querySelector('.success-checkmark');
+        let error = componentWithLoadings.querySelector(".error");
 
-        let error = componentWithLoadings.querySelector('.error');
-
-
-
-        if(!loader.classList.contains('hide-content')){
-
-            loader.classList.add('hide-content');
-
+        if (!loader.classList.contains("hide-content")) {
+            loader.classList.add("hide-content");
         }
 
-        if(!error.classList.contains('hide-content')){
-            error.classList.add('hide-content');
+        if (!error.classList.contains("hide-content")) {
+            error.classList.add("hide-content");
         }
 
-        if(success.classList.contains('hide-content')){
-
-            success.classList.remove('hide-content')
+        if (success.classList.contains("hide-content")) {
+            success.classList.remove("hide-content");
         }
-
-        
-
     },
 
+    ativaLoading() {
+        let componentWithLoadings = document.querySelector(
+            ".container-form-content-loadings"
+        );
 
+        let loader = componentWithLoadings.querySelector(".loader");
 
-    ativaLoading(){
-
-
-        let componentWithLoadings = document.querySelector('.container-form-content-loadings');
-
-        let loader = componentWithLoadings.querySelector('.loader');
-
-        if(componentWithLoadings.classList.contains('hide-content')){
-
-            componentWithLoadings.classList.remove('hide-content');
-
+        if (componentWithLoadings.classList.contains("hide-content")) {
+            componentWithLoadings.classList.remove("hide-content");
         }
 
-        if(loader.classList.contains('hide-content')){
-
-            loader.classList.remove('hide-content');
-
+        if (loader.classList.contains("hide-content")) {
+            loader.classList.remove("hide-content");
         }
-
-
     },
-
 
     tryLogin(button) {
-
-
         let inputLogin = document.querySelector('input[name="login"]');
-        let spanErroLogin = document.querySelector('.error-info.login');
+        let spanErroLogin = document.querySelector(".error-info.login");
         let inputContainerLogin = inputLogin.parentNode;
 
         let inputSenha = document.querySelector('input[name="password"]');
-        let spanErroSenha = document.querySelector('.error-info.password');
+        let spanErroSenha = document.querySelector(".error-info.password");
         let inputContainerSenha = inputSenha.parentNode;
-
 
         let errorContados = 0;
 
-
-        if(!validations.login(inputLogin.value)){
-
-            if(!inputContainerLogin.classList.contains('error')){
-                inputContainerLogin.classList.add('error');
+        if (!validations.login(inputLogin.value)) {
+            if (!inputContainerLogin.classList.contains("error")) {
+                inputContainerLogin.classList.add("error");
             }
 
-            if(spanErroLogin.classList.contains('hide-content')){
-
-                spanErroLogin.classList.remove('hide-content')
-
-            }
-
-
-            errorContados++;
-            
-        }else{
-
-            if(inputContainerLogin.classList.contains('error')){
-                inputContainerLogin.classList.remove('error');
-            }
-
-            if(!spanErroLogin.classList.contains('hide-content')){
-
-                spanErroLogin.classList.add('hide-content')
-
-            }
-
-        }
-
-        if(!validations.password(inputSenha.value)){
-
-            if(!inputContainerSenha.classList.contains('error')){
-                inputContainerSenha.classList.add('error');
-            }
-
-            if(spanErroSenha.classList.contains('hide-content')){
-
-                spanErroSenha.classList.remove('hide-content')
-
+            if (spanErroLogin.classList.contains("hide-content")) {
+                spanErroLogin.classList.remove("hide-content");
             }
 
             errorContados++;
-
-
-        }else{
-
-            if(inputContainerSenha.classList.contains('error')){
-                inputContainerSenha.classList.remove('error');
+        } else {
+            if (inputContainerLogin.classList.contains("error")) {
+                inputContainerLogin.classList.remove("error");
             }
 
-            if(!spanErroSenha.classList.contains('hide-content')){
-
-                spanErroSenha.classList.add('hide-content')
-
+            if (!spanErroLogin.classList.contains("hide-content")) {
+                spanErroLogin.classList.add("hide-content");
             }
-
-
         }
 
+        if (!validations.password(inputSenha.value)) {
+            if (!inputContainerSenha.classList.contains("error")) {
+                inputContainerSenha.classList.add("error");
+            }
 
-        if(errorContados == 0){
+            if (spanErroSenha.classList.contains("hide-content")) {
+                spanErroSenha.classList.remove("hide-content");
+            }
 
+            errorContados++;
+        } else {
+            if (inputContainerSenha.classList.contains("error")) {
+                inputContainerSenha.classList.remove("error");
+            }
+
+            if (!spanErroSenha.classList.contains("hide-content")) {
+                spanErroSenha.classList.add("hide-content");
+            }
+        }
+
+        if (errorContados == 0) {
             this.login(inputLogin.value, inputSenha.value);
-
-
         }
-
-
-
     },
 
-
-    login(login, senha){
-
+    login(login, senha) {
 
         this.ativaLoading();
 
+        function getDeviceInfo() {
+
+            const device = platform;
+
+            return {
+                name: device.name || "Unknown",
+                version: device.version || "Unknown",
+                os: device.os ? (device.os.family + " " + device.os.version) : "Unknown",
+                description: device.description || "No description available",
+            };
+
+        }
+
+        const deviceInfo = getDeviceInfo();
+
+
+
         $.ajax({
-            type: 'POST',
+            type: "POST",
             data: {
-                'login':login,
-                'senha':senha
+                login: login,
+                senha: senha,
+                'device': deviceInfo
             },
-            url:'/evento/login',
+            url: "/evento/login",
             success: (response) => {
 
-                if(response.success){
-
+                if (response.success) {
                     this.ativaSuccess();
 
-
                     setTimeout(() => {
-
                         window.location.reload();
-
-                    }, 1000)
-
-
-                }else{
-
-
+                    }, 1000);
+                } else {
                     let erroText = response.error;
 
                     this.ativaError(erroText);
-
                 }
-
             },
-
-            error: function (xhr, status, error) {
-
-                console.log(error);
-             },
-        })
-
-    }
-
-}
-
+        });
+    },
+};
 
 listeners();

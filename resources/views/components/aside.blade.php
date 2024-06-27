@@ -22,7 +22,7 @@
             <a class="aside-container-body-item">
                 <i class="fa-solid fa-clipboard-check"></i><span>Consultas Realizadas</span> 
             </a>
-            <a class="aside-container-body-item">
+            <a href="/consultas-agendadas" class="aside-container-body-item <?php if($current_page == 'consultas-agendadas') echo 'active'; ?>">
                 <i class="fa-solid fa-clipboard-list"></i><span>consultas Agendadas</span>
             </a>
             <a class="aside-container-body-item">

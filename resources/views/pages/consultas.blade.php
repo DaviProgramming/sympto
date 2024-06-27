@@ -5,13 +5,9 @@
 @section('head-content')
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr@4.6.13/dist/l10n/pt.js"></script>
-
-
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/scss/main.scss', 'resources/js/scriptConsultas.js'])
 
 @endsection
@@ -112,7 +108,7 @@
                             <textarea name="sentindo" id="" placeholder="Descreva os sintomas o mais detalhadamente possível"></textarea>
                         </div>
 
-                        <button class="btn-new-query" id="btn-nova-consulta"><span>Proxima Etapa <i
+                        <button class="btn-new-query" id="btn-nova-consulta"><span>Solicitar Consulta <i
                                     class="fa-solid fa-arrow-right"></i></span></button>
                     </div>
 

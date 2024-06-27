@@ -45,7 +45,12 @@
         
     }
 
+
+    
+
     &:not(.hide-body){
+
+       
 
         .container-consulta-content-form-sintomas-body-item-content{
 
@@ -121,7 +126,11 @@
             flex-wrap: nowrap;
             height: max-content;
         
-          
+            &:not(.hide-body){
+                .container-consulta-content-form-sintomas-body-item-title{
+                    background: $second-color;
+                }
+            }
 
             &:is(.hide-body){
 

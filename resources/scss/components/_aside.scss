@@ -14,72 +14,79 @@ aside{
     a{
         text-decoration: none ;
     }
-    &:not(:hover){
 
-        width: max-content;
+    @media (min-width:999px) {
+
+        &:not(:hover){
+
+            width: max-content;
+            
+            span{
+                display: none!Important;
+            }
+    
+            .aside-container{
+                padding: 15px;
+                align-items: flex-start;
+                &-head{
+                    background: initial;
+                    width: max-content;
+                    align-items: center;
+                    box-shadow: none;
+                    &-image{
+                        width: 40px;
+                        height: 40px;
+                    }
+    
+                    &-name{
+                        display: none!important;
+                    }
+    
+                }
+    
+                &-body{
+    
+    
+                    &-item{
+                        background: transparent;
+                        border: none;
+                        box-shadow: none;
+                        padding: 25px 30px;
+                        svg{
+                            top: 5px;
+                            background: none;
+                        }
+                    }
+                }
+    
+                &-footer{
+                    display: flex;
+                    align-items: start;
+                    width: max-content;
+                    padding: 0;
+    
+                    &-item{
+                        width: 50px;
+                        height: 50px;
+                        background: transparent;
+                        border: none;
+                        box-shadow: none;
+    
+                        svg{
+                            background: none;
+                        }
+    
+                    }
+    
+                }
+            }
+    
+    
+        }
         
-        span{
-            display: none!Important;
-        }
-
-        .aside-container{
-            padding: 15px;
-            align-items: flex-start;
-            &-head{
-                background: initial;
-                width: max-content;
-                align-items: center;
-                box-shadow: none;
-                &-image{
-                    width: 40px;
-                    height: 40px;
-                }
-
-                &-name{
-                    display: none!important;
-                }
-
-            }
-
-            &-body{
-
-
-                &-item{
-                    background: transparent;
-                    border: none;
-                    box-shadow: none;
-                    padding: 25px 30px;
-                    svg{
-                        top: 5px;
-                        background: none;
-                    }
-                }
-            }
-
-            &-footer{
-                display: flex;
-                align-items: start;
-                width: max-content;
-                padding: 0;
-
-                &-item{
-                    width: 50px;
-                    height: 50px;
-                    background: transparent;
-                    border: none;
-                    box-shadow: none;
-
-                    svg{
-                        background: none;
-                    }
-
-                }
-
-            }
-        }
-
-
+        
     }
+
     
     &::after{
 
@@ -246,3 +253,6 @@ aside{
     
     }
 }
+
+
+@import "../responsiviness/aside";

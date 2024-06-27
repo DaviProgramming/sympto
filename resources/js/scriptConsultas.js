@@ -4,7 +4,21 @@ $.ajaxSetup({
     }
 });
 
+const startCookiePage = new Date().getTime();
+
 const listeners = () => {
+
+    window.addEventListener('beforeunload', (event)=> {
+
+       let cookiePagina = cookieActions.obterCookieTempo();
+       
+       if(cookiePagina){
+
+        cookieActions.enviaCookieTempo(cookiePagina);
+
+       }
+
+    })
 
     const buttonNovaConsulta = document.querySelector('#btn-nova-consulta');
     buttonNovaConsulta.addEventListener('click', (e) => {
@@ -33,7 +47,6 @@ const listeners = () => {
 
     buttonNextSintomas.addEventListener("click", (e) => {
 
-        console.log(e)
         clickNextSintomas.clicked(e.target);
     });
 
@@ -463,7 +476,7 @@ const clickNextSintomas = {
         if(this.sintomasSelecionados.length <= 0){
 
             Swal.fire({
-                text: "É necessario selecionar ao menos 1 sintoma",
+                title: "É necessario selecionar ao menos 1 sintoma",
                 icon: "error",
                 timer: 2000,
                 showConfirmButton: false
@@ -537,20 +550,48 @@ const clickNewConsulta = {
     clicked(button){
 
             let textoAcrescento = document.querySelector('textarea[name="sentindo"]');
+            let sintomas = clickNextSintomas.sintomasSelecionados;
+            $.ajax({
+                type: 'POST',
+                data: {
+                    sintomas: sintomas,
+                    descricaoPaciente: textoAcrescento.value
+                },
+                url: '/evento/nova-consulta',
+                success: (response) => {
+
+                    if(response.success){
+
+                        Swal.fire({
+                            title: "CONSULTA SOLICITADA",
+                            icon: "success",
+                            timer: 2000,
+                            showConfirmButton: false
+                        });
+            
+                        setTimeout(() => {
+            
+                            window.location.href = '/consultas-agendadas';
+            
+                        }, 2000)
+
+                    }else{
+
+
+                        Swal.fire({
+                            title: response.error,
+                            icon: "error",
+                            timer: 2000,
+                            showConfirmButton: false
+                        });
+
+                    }
+
+                }
+            })
 
             
-            Swal.fire({
-                title: "CONSULTA SOLICITADA",
-                icon: "success",
-                timer: 2000,
-                showConfirmButton: false
-              });
-
-              setTimeout(() => {
-
-                window.location.reload();
-
-              }, 2000)
+            
 
               return;
 
@@ -560,7 +601,46 @@ const clickNewConsulta = {
 
 }
 
+const cookieActions = {
+
+    obterCookieTempo(){
+
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.indexOf('tempo_na_pagina=') === 0) {
+                return cookie.substring('tempo_na_pagina='.length, cookie.length);
+            }
+        }
+        return null;
+
+    },
+
+    enviaCookieTempo(tempoPagina){
+
+        $.ajax({
+            type:"POST",
+            data:{
+                'tempoPagina': tempoPagina
+            },
+            url:"/cookie/tempo-pagina",
+            success: (response)=> {
+
+                console.log(response);
+                
+            }
+        })
+
+
+
+    },
+
+
+}
+
 const userActions = {
+
+    
 
     logout(){
 

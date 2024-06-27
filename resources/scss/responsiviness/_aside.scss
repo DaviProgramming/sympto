@@ -1,0 +1,12 @@
+@media screen and (max-width: 998px){
+
+    aside{
+
+        &:not(.active){
+            display: none;
+        }
+
+        width: 100%;
+    }
+
+}
