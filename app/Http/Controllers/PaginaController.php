@@ -4,16 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session; 
+use Illuminate\Support\Facades\Session;
 
 
 use App\Models\User;
 use App\Models\Sintoma;
-
+use App\Models\Consulta;
+use Carbon\Carbon;
 
 class PaginaController extends Controller
 {
-    public function home(){
+    public function home()
+    {
 
         $user = Auth::user();
 
@@ -29,7 +31,8 @@ class PaginaController extends Controller
         }
     }
 
-    public function login(){
+    public function login()
+    {
 
         $user = Auth::user();
 
@@ -46,7 +49,8 @@ class PaginaController extends Controller
         }
     }
 
-    public function novaConsulta(){
+    public function novaConsulta()
+    {
 
         $user = Auth::user();
 
@@ -66,25 +70,27 @@ class PaginaController extends Controller
         }
     }
 
-    public function consultasAgendadas(){
+    public function consultasAgendadas()
+    {
 
         $user = Auth::user();
+
 
         Session::put('current_page', 'consultas-agendadas');
 
         $currentPage = session('current_page');
 
-        if($user){
+        if ($user) {
 
-            return view('pages.consulta_agendadas', ['user' => $user, 'current_page' => $currentPage]);
+            $consultas_agendadas = Consulta::where('id_paciente', $user->id)->get();
+            $todosSintomas = Sintoma::all();
 
 
-        }else{
+
+            return view('pages.consulta_agendadas', ['user' => $user, 'current_page' => $currentPage, 'consultas_agendadas' => $consultas_agendadas, 'sintomas' => $todosSintomas]);
+        } else {
 
             return redirect()->route('pagina.login');
-
-
         }
-
     }
 }

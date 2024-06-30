@@ -1,0 +1,272 @@
+
+
+.container-consulta-content-scheduled{
+    display: flex;
+   flex-direction: column;
+    gap: 20px;
+    height: 600px;
+    border-radius: 6px;
+    margin-top: 20px;
+    width: 100%;
+    overflow: hidden;
+    padding: 30px;
+    background: $white-color;
+
+
+    &-filters{
+        display: flex;
+        flex-direction: row;
+        height: max-content;
+
+        &-container{
+            position: relative;
+            padding: 10px;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.692);
+            height: max-content;
+            border-radius: 6px;
+            background: transparent;
+            width: 100%;
+
+            span{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 10px;
+                position: absolute;
+                top: 11px;
+                left: 10px;
+                color: $letter-color;
+                font-size: 16px;
+            }
+            input{
+                width: 100%;
+                border: none;
+                outline: none;
+                background: transparent;
+                color: $letter-color;
+            }
+
+            svg{
+                
+                color: $letter-color;
+                cursor: pointer;
+
+
+                &:hover{
+                    color: $second-color;
+                }
+            }
+        }
+    }
+
+
+    &-body{
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 5px;
+
+
+    &::-webkit-scrollbar{
+        width: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb{
+        background: $third-color;
+        border-radius: 6px;
+    }
+
+    }
+
+    &-content{
+        
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        gap: 0;
+
+        &-item{
+            display: flex;
+            flex-direction: column;
+            gap: 0px;
+            width: 100%;
+
+            &-title{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                font-weight: 600;
+                color: $letter-color;
+                gap: 8px;
+                font-size: 14px;
+                background: $second-color;
+                padding: 10px 20px;
+                color: $white-color;
+
+                position: relative;
+
+                &::before{
+
+                    content: '';
+                    position: absolute;
+                    top: 20%;
+                    left: -2px;
+                    width: 3px;
+                    height: 60%;
+                    background: $white-color;
+                    border-radius: 50px;
+                }
+
+                svg{
+                    background: $white-color;
+                    padding: 10px 10px;
+                    border-radius: 50%;
+                    color: $second-color;
+                    height: 20px;
+                    width: 20px;
+                    display: flex;
+                    align-items: center;
+                }
+            }
+
+
+            &-container{
+                height: 100px;
+                padding: 10px;
+                overflow: auto;
+                display: flex;
+                align-items: center;
+
+                &::-webkit-scrollbar{
+                    width: 8px;
+                }
+                &::-webkit-scrollbar-thumb{
+                    background: $third-color;
+                    border-radius: 50px;
+                    cursor: pointer;
+
+                }
+
+
+                &.sintomas{
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    gap: 10px;
+                }
+
+                .data-exata{
+                    margin-top: 10px;
+                    font-size: 12px;
+                    color: $letter-color;
+                }
+
+
+                .sintomas{
+                    background: $first-color;
+                    width: max-content;
+                    padding: 10px 20px;
+                    border-radius: 6px;
+                    color: $white-color;
+                    font-size: 14px;
+                    font-weight: 600;
+                    text-align: center;
+                }
+                
+            }
+
+            &:first-child{
+                
+                .container-consulta-content-scheduled-content-item-title{
+                    border-radius: 6px 0px 0px 6px;
+                    position: relative;
+
+                }
+
+
+            }
+
+
+            &:last-child{
+
+                .container-consulta-content-scheduled-content-item-title{
+                    border-radius: 0px 6px 6px 0px;
+
+
+
+                }
+            }
+
+
+            &:nth-child(1){
+
+                .container-consulta-content-scheduled-content-item-title{
+                    border-radius: 6px 0 0 0;
+
+                    &::before{
+                        content: none;
+                    }
+                }
+
+                .container-consulta-content-scheduled-content-item-container{
+                    border-radius: 0 0 0 6px;
+                    box-shadow: -1px 0px 1px rgba(0, 0, 0, 0.192), 0px 1px 1px rgba(0, 0, 0, 0.192);
+                }
+
+
+            }
+
+            &:nth-child(2){
+
+               
+
+                .container-consulta-content-scheduled-content-item-container{
+                    border-radius: 0 0 0 0px;
+                    box-shadow: -1px 0px 1px rgba(0, 0, 0, 0.192), 0px -1px 1px rgba(0, 0, 0, 0.192), 1px -0px 0px rgba(0, 0, 0, 0.192), 0px 1px 0px rgba(0, 0, 0, 0.192);
+                }
+
+
+            }
+
+            &:nth-child(3){
+
+                .container-consulta-content-scheduled-content-item-container{
+                    border-radius: 0 0 0 0px;
+                    box-shadow:  1px -0px 0px rgba(0, 0, 0, 0.192), 0px 1px 0px rgba(0, 0, 0, 0.192);
+                }
+
+
+            }
+
+            &:nth-child(4){
+
+                .container-consulta-content-scheduled-content-item-title{
+                    border-radius: 0px 6px 0 0px;
+                }
+
+                .container-consulta-content-scheduled-content-item-container{
+                    border-radius: 0 0 6px 0px;
+                    box-shadow:  1px -0px 0px rgba(0, 0, 0, 0.192), 0px 1px 0px rgba(0, 0, 0, 0.192);
+                }
+
+
+            }
+
+            
+
+          
+            
+            
+
+            
+        }
+
+        
+
+        
+
+        
+    }
+
+}
