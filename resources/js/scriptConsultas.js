@@ -567,7 +567,7 @@ const clickNewConsulta = {
             
                         setTimeout(() => {
             
-                            window.location.href = '/consultas-agendadas';
+                            window.location.href = '/historico-consulta';
             
                         }, 2000)
 

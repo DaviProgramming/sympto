@@ -11,7 +11,7 @@ use App\Http\Controllers\CookieController;
 Route::get('/', [PaginaController::class, 'home'])->name('pagina.home');
 Route::get('/login', [PaginaController::class, 'login'])->name('pagina.login');
 Route::get('/nova-consulta', [PaginaController::class, 'novaConsulta'])->name('pagina.nova-consulta');
-Route::get('/consultas-agendadas',[PaginaController::class, 'consultasAgendadas'])->name('pagina.consultasAgendadas');
+Route::get('/historico-consulta',[PaginaController::class, 'consultasAgendadas'])->name('pagina.consultasAgendadas');
 
 Route::post('/evento/login', [EventoController::class, 'login'])->name('evento.login');
 Route::post('/evento/logout', [EventoController::class, 'logout'])->name('evento.logout');

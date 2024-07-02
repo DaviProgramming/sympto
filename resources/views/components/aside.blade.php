@@ -11,23 +11,18 @@
 
         <div class="aside-container-body">
 
-            <a href="/" class="aside-container-body-item <?php if($current_page == 'home') echo 'active'; ?>">
+            <a href="{{route('pagina.home')}}" class="aside-container-body-item <?php if($current_page == 'home') echo 'active'; ?>">
                 <i class="fa-solid fa-house"></i> <span>Inicio</span> 
             </a>
 
-            <a href="/nova-consulta" class="aside-container-body-item <?php if($current_page == 'nova-consulta') echo 'active'; ?>">
+            <a href="{{route('pagina.nova-consulta')}}" class="aside-container-body-item <?php if($current_page == 'nova-consulta') echo 'active'; ?>">
                 <i class="fa-regular fa-calendar-plus"></i><span>Nova Consulta</span> 
             </a>
 
-            <a class="aside-container-body-item">
-                <i class="fa-solid fa-clipboard-check"></i><span>Consultas Realizadas</span> 
+            <a href="{{route('pagina.consultasAgendadas')}}" class="aside-container-body-item <?php if($current_page == 'consultas-agendadas') echo 'active'; ?>">
+                <i class="fa-solid fa-clipboard-list"></i><span>Histórico Consulta</span>
             </a>
-            <a href="/consultas-agendadas" class="aside-container-body-item <?php if($current_page == 'consultas-agendadas') echo 'active'; ?>">
-                <i class="fa-solid fa-clipboard-list"></i><span>consultas Agendadas</span>
-            </a>
-            <a class="aside-container-body-item">
-                <i class="fa-solid fa-file-waveform"></i><span>Exames solicitados</span>
-            </a>
+            
 
         </div>
 
