@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('pagina', 'Consulta')
+@section('pagina', 'Nova Consulta')
 
 @section('head-content')
 

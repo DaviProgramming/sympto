@@ -1,10 +1,13 @@
 @extends('layout')
 
-@section('pagina', 'Consulta')
+@section('pagina', 'Histórico Consulta')
 
 @section('head-content')
 
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
+
+@vite(['resources/css/app.css', 'resources/js/app.js', 'resources/scss/main.scss', 'resources/js/scriptHistoricoConsuta.js'])
 
 @endsection
 
@@ -20,7 +23,7 @@
         <div class="container-consulta-content-scheduled">
             <div class="container-consulta-content-scheduled-filters">  
                 <div class="container-consulta-content-scheduled-filters-container">
-                    <input type="text" placeholder="">
+                    <input type="text" >
                     
                     <span><i class="fa-solid fa-magnifying-glass"></i> Pesquise aqui</span>
 
@@ -55,6 +58,22 @@
                         <div class="content-scheduled-title-icon">
                             <i class="fa-solid fa-chevron-down"></i>
                         </div>
+
+                    </div>
+
+                    <div class="content-scheduled-body">
+
+                        <div class="content-scheduled-body-sintomas">
+                            <div class="content-scheduled-body-sintomas-title">
+                                Sintomas
+                            </div>
+                        </div>
+                        <div class="content-scheduled-body-exames">
+                            <div class="content-scheduled-body-exames-title">
+                                Exames
+                            </div>
+                        </div>
+                        
 
                     </div>
 

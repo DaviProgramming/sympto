@@ -1,8 +1,61 @@
 .content-scheduled{
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 0px;
     width: 100%;
+
+
+    &:not(.active){
+
+        .content-scheduled-body{
+            display: none;
+        }
+
+    }
+
+
+    &.active{
+
+        .content-scheduled-title{
+
+            background: rgba(#151515, 0.8);
+            color: $white-color;
+            border-end-end-radius: 0;
+            border-end-start-radius: 0;
+        }
+
+        .content-scheduled-body{
+            display: grid;
+        }
+
+        svg{
+
+            transform: rotate(180deg);
+
+        }
+
+    }
+
+
+    &:not(:last-child){
+
+
+        .content-scheduled-title{
+
+            &::before{
+                content: '';
+                position: absolute;
+                bottom: 0px;
+                left: 0;
+                width: 100%;
+                height: 1px;
+                background: $letter-color;
+                
+            }
+
+        }
+
+    }
 
     &-title{
         display: grid;
@@ -15,17 +68,8 @@
         color: $letter-color;
         font-weight: 600;
         position: relative;
+        
 
-        &::before{
-            content: '';
-            position: absolute;
-            bottom: 0px;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: $letter-color;
-            
-        }
 
         & > div:first-child{
             display: flex;
@@ -38,17 +82,6 @@
             justify-content: center;
             width: 100%;
 
-            &:not(:first-child):before{
-                position: absolute;
-                height: 100%;
-                width: 2px;
-                background: $white-color;
-                content: '';
-                top: 0;
-                left: -10px;
-                border-radius: 10px;
-
-            }
 
         }
 
@@ -80,19 +113,36 @@
             }
 
 
-            &:hover{
-
-
-                svg{
-
-                    transform: rotate(180deg);
-
-                }
-
-            }
+            
 
             
 
+        }
+    }
+
+
+    &-body{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        height: 100px;
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        padding: 10px 20px;
+        
+        box-shadow: 0 0 4px $letter-color;
+        background: rgba($letter-color, 1) ;
+        color: $white-color;
+
+        &-sintomas-title, &-exames-title{
+            font-weight: 600;
+        }
+
+        
+        & > div{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
         }
     }
 }
